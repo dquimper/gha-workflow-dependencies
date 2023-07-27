@@ -1,0 +1,64 @@
+name: Build
+
+on:
+  workflow_call:
+  push:
+    branches-ignore:
+      - main # on main, the deployment workflows calls build
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: 'build-${{ github.workflow }}@${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  build-ubuntu:
+    name: Build Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - name: Running step 1
+        run: |
+          echo "Running step 1"
+
+      - name: Running step 2
+        run: |
+          echo "Running step 2"
+
+      - name: Running step 3
+        run: |
+          echo "Running step 3"          
+
+  build-windows:
+    name: Build Windows
+    runs-on: windows-latest
+    steps:
+      - name: Running step 1
+        run: |
+          echo "Running step 1"
+
+      - name: Running step 2
+        run: |
+          echo "Running step 2"
+
+      - name: Running step 3
+        run: |
+          echo "Running step 3"          
+
+  build-macos:
+    name: Build macOS
+    runs-on: macos-latest
+    steps:
+      - name: Running step 1
+        run: |
+          echo "Running step 1"
+
+      - name: Running step 2
+        run: |
+          echo "Running step 2"
+
+      - name: Running step 3
+        run: |
+          echo "Running step 3"          
